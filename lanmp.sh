@@ -453,11 +453,15 @@ check_service nginx
 check_service phpfpm
 echo "The lnmp done, Please use 'http://your ip/index.php' to access."
 }
-read -p "Please chose which type env you install, (lamp|lnmp)? " t
-while [ t != "lamp" -o t != "lnmp" ]
+read  -p "please input lamp or  lnmp : "  t
+
+echo $t |grep -E "lnmp|lamp" &>/dev/null
+while [ $? -ne 0 ]
 do
-  read -p "Please input again . which type env you install, (lamp|lnmp)? " t
+   read -p "Please input again . which type env you install, (lamp|lnmp)? " t
 done
+
+
 case $t in
     lamp)
         lamp
